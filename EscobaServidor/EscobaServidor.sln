@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscobaServidor", "EscobaServidor\EscobaServidor.csproj", "{07239E22-770B-4649-AEDE-81AD5ED39D7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscobaCliente", "EscobaCliente\EscobaCliente.csproj", "{8D6E493A-9D20-4BC9-880A-51C461208E2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07239E22-770B-4649-AEDE-81AD5ED39D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07239E22-770B-4649-AEDE-81AD5ED39D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07239E22-770B-4649-AEDE-81AD5ED39D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07239E22-770B-4649-AEDE-81AD5ED39D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D6E493A-9D20-4BC9-880A-51C461208E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6E493A-9D20-4BC9-880A-51C461208E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6E493A-9D20-4BC9-880A-51C461208E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6E493A-9D20-4BC9-880A-51C461208E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
