@@ -14,6 +14,26 @@ public class Card
     {
         get { return _value; }
     }
+
+    public int GetIntValue()
+    {
+        if (_value == "sota")
+        {
+            return 8;
+        }
+        
+        if (_value == "caballo")
+        {
+            return 9;
+        }
+        
+        if (_value == "rey")
+        {
+            return 10;
+        }
+        
+        return Int32.Parse(_value);
+    }
     
     public Card(string suit, string value)
     {

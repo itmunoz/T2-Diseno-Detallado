@@ -6,3 +6,4 @@ Console.WriteLine("Partiendo el juego!");
 
 Game game = new Game();
 
+game.Start();
