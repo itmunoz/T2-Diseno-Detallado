@@ -8,6 +8,7 @@ public class Game
     private Deck _deck = new Deck();
     private CardsInTable _cardsInTable = new CardsInTable();
     private CardCombinationChecker _cardChecker = new CardCombinationChecker();
+    private PointsCounter _pointsCounter = new PointsCounter();
     private View _view = new View();
 
     private int _currentPlayerTurn = 1;
@@ -15,15 +16,57 @@ public class Game
     public Game()
     {
         GiveCardsToPlayers();
+        PlaceInitialCardsOnTable();
     }
 
     public void Start()
     {
+        CheckStartOfRoundBroom();
         while (!IsGameFinished())
         {
+            if (_deck.Cards.Count == 0)
+            {
+                EndOfHand();
+            }
+            if (_player1.Hand.Count == 0 && _player2.Hand.Count == 0)
+                StartNewRound();
             PlayTurn();
-            // _view.Pause();
         }
+    }
+
+    private void EndOfHand()
+    {
+        Player[] players = { _player1, _player2 };
+        _view.CardsWonByPlayer(players);
+        _pointsCounter.AssignPoints(players);
+        _view.PointsWonByPlayer(players);
+        NextHand(players);
+    }
+
+    private void NextHand(Player[] players)
+    {
+        foreach (var player in players)
+        {
+            player.ResetWonCards();
+        }
+        _deck.PrepareDeck();
+    }
+
+    private void CheckStartOfRoundBroom()
+    {
+        
+    }
+
+    private void PlaceInitialCardsOnTable()
+    {
+        _deck.PlaceCardInTable(_cardsInTable);
+    }
+
+    private void StartNewRound()
+    {
+        _view.AnnounceNewRound();
+        GiveCardsToPlayers();
+        ChangeTurn();
     }
 
     private void PlayTurn()

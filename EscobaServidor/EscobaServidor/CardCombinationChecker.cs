@@ -20,7 +20,6 @@ public class CardCombinationChecker
     private int GetCombinationSum(List<Card> combination)
     {
         int totalSum = 0;
-
         foreach (var card in combination)
             totalSum += card.GetIntValue();
 

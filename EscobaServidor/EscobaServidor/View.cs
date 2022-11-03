@@ -7,9 +7,33 @@ public class View
         Console.WriteLine("Bienvenido al juego!");
         Console.WriteLine("");
     }
-    
-    public void Pause() => Console.ReadLine();
-    
+
+    public void CardsWonByPlayer(Player[] players)
+    {
+        Console.WriteLine("-----------------------------------");
+        Console.WriteLine("Cartas ganadas en esta ronda");
+        foreach (var player in players)
+        {
+            Console.Write("    Jugador " + player.Id + ": ");
+            foreach (var card in player.WonCards)
+            {
+                Console.Write(card + "  ");
+            }
+            Console.WriteLine("");
+        }
+    }
+
+    public void PointsWonByPlayer(Player[] players)
+    {
+        Console.WriteLine("-----------------------------------");
+        Console.WriteLine("Total puntos ganados");
+        foreach (var player in players)
+        {
+            Console.WriteLine("    Jugador " + player.Id + ": " + player.Points);
+        }
+        Console.WriteLine("-----------------------------------");
+    }
+
     public void TurnInfo(Player player, CardsInTable cardsInTable)
     {
         Console.WriteLine("-----------------------------------");
@@ -41,6 +65,12 @@ public class View
     public void NoCombinationSums15()
     {
         Console.WriteLine("No hay combinación que sume 15. Se pasa al siguiente turno");
+    }
+
+    public void AnnounceNewRound()
+    {
+        Console.WriteLine("Ambos jugadores se quedaron sin cartas.");
+        Console.WriteLine("Se repartiran nuevas cartas y partirá una nueva ronda.");
     }
 
     public void BroomAnnouncement(Player player)

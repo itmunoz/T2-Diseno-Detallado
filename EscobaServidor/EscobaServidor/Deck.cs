@@ -4,13 +4,31 @@ using System.Text.Json;
 
 public class Deck
 {
-    public List<Card> _cards;
+    private List<Card> _cards = new List<Card>();
     private Random _rnd = new Random();
 
     public Deck()
     {
+        PrepareDeck();
+    }
+
+    public void PrepareDeck()
+    {
         _cards = GenerateCards();
         _cards = _cards.OrderBy(carta => GeneradorNumerosAleatorios.Generar()).ToList();
+    }
+
+    public List<Card> Cards
+    {
+        get { return _cards; }
+    }
+
+    public void PlaceCardInTable(CardsInTable table)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            table.ReceiveCard(DrawTopCard());
+        }
     }
 
     public void GiveCards(Player player, int cardQuantity)
