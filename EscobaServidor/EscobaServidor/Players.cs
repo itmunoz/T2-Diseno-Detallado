@@ -8,7 +8,7 @@ public class Players
     {
         _players = new List<Player>();
         for(int i = 0; i < playersNumber; i++)
-            _players.Add(new Player());
+            _players.Add(new Player(i));
     }
     
     public Player GetPlayer(int idPlayer) => _players[idPlayer];

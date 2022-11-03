@@ -18,20 +18,14 @@ public class Card
     public int GetIntValue()
     {
         if (_value == "sota")
-        {
             return 8;
-        }
-        
+
         if (_value == "caballo")
-        {
             return 9;
-        }
         
         if (_value == "rey")
-        {
             return 10;
-        }
-        
+
         return Int32.Parse(_value);
     }
     
@@ -41,5 +35,5 @@ public class Card
         _value = value;
     }
     
-    public override string ToString() => "[" + _suit + "," + _value + "]";
+    public override string ToString() => _suit + "_" + _value;
 }
