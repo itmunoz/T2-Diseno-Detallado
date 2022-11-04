@@ -16,11 +16,26 @@ public class View
         {
             Console.Write("    Jugador " + player.Id + ": ");
             foreach (var card in player.WonCards)
-            {
                 Console.Write(card + "  ");
-            }
+            
             Console.WriteLine("");
         }
+    }
+
+    public void AnnounceWinner(Player player)
+    {
+        Console.WriteLine("");
+        Console.WriteLine("**************************");
+        Console.WriteLine("El juego ha terminado!");
+        Console.WriteLine("El ganador es el jugador " + player.Id + " con " + player.Points + " puntos!");
+    }
+
+    public void AnnounceTie()
+    {
+        Console.WriteLine("");
+        Console.WriteLine("**************************");
+        Console.WriteLine("¡El juego ha terminado!");
+        Console.WriteLine("¡Ha ocurrido un empate entre los dos jugadores!");
     }
 
     public void PointsWonByPlayer(Player[] players)
@@ -28,9 +43,7 @@ public class View
         Console.WriteLine("-----------------------------------");
         Console.WriteLine("Total puntos ganados");
         foreach (var player in players)
-        {
             Console.WriteLine("    Jugador " + player.Id + ": " + player.Points);
-        }
         Console.WriteLine("-----------------------------------");
     }
 
@@ -41,17 +54,14 @@ public class View
         Console.Write("Mesa Actual: ");
 
         for (int i = 0; i < cardsInTable.GetCardsInTable().Count; i++)
-        {
             Console.Write("(" + i + ")" + cardsInTable.GetCardsInTable()[i] + "  ");
-        }
-        
-        Console.WriteLine();
+
+        Console.WriteLine("");
         Console.Write("Mano jugador: ");
         
         for (int i = 0; i < player.Hand.Count; i++)
-        {
             Console.Write("(" + i + ") " + player.Hand[i] + "  ");
-        }
+        
         Console.WriteLine("");
     }
 
@@ -108,9 +118,8 @@ public class View
         Console.Write("Jugador " + player.Id + " se lleva las siguientes cartas: ");
         Console.Write("");
         foreach (var card in cards)
-        {
             Console.Write(card + " ");
-        }
+        
         Console.WriteLine("");
     }
 

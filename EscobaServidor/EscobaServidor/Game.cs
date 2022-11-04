@@ -12,6 +12,7 @@ public class Game
     private View _view = new View();
 
     private int _currentPlayerTurn = 1;
+    private int _lastPlayerToWinCards;
 
     public Game()
     {
@@ -24,7 +25,7 @@ public class Game
         CheckStartOfRoundBroom();
         while (!IsGameFinished())
         {
-            if (_deck.Cards.Count == 0)
+            if (_deck.Cards.Count == 0 && _player1.Hand.Count == 0 && _player2.Hand.Count == 0)
             {
                 EndOfHand();
             }
@@ -37,10 +38,55 @@ public class Game
     private void EndOfHand()
     {
         Player[] players = { _player1, _player2 };
+        GiveCardsInTableToLastWinner(players);
         _view.CardsWonByPlayer(players);
         _pointsCounter.AssignPoints(players);
         _view.PointsWonByPlayer(players);
+        
+        CheckPoints(players);
+        
         NextHand(players);
+    }
+
+    private void CheckPoints(Player[] players)
+    {
+        if (players[0].Points > 15 && players[1].Points > 15)
+            PlayersTie();
+        
+        else if (players[0].Points > 15)
+            PlayerWin(players[0]);
+        
+        else if (players[1].Points > 15)
+            PlayerWin(players[1]);
+    }
+
+    private void PlayerWin(Player player)
+    {
+        _view.AnnounceWinner(player);
+        CloseProgram();
+    }
+
+    private void PlayersTie()
+    {
+        _view.AnnounceTie();
+        CloseProgram();
+    }
+
+    private void CloseProgram()
+    {
+        Environment.Exit(0);
+    }
+
+    private void GiveCardsInTableToLastWinner(Player[] players)
+    {
+        foreach (var player in players)
+        {
+            if (player.Id == _lastPlayerToWinCards)
+            {
+                player.AddCardsToWonCards(_cardsInTable.GetCardsInTable());
+                return;
+            }
+        }
     }
 
     private void NextHand(Player[] players)
@@ -49,7 +95,11 @@ public class Game
         {
             player.ResetWonCards();
         }
+
+        _cardsInTable.ResetWonCards();
         _deck.PrepareDeck();
+        GiveCardsToPlayers();
+        PlaceInitialCardsOnTable();
     }
 
     private void CheckStartOfRoundBroom()
@@ -109,9 +159,7 @@ public class Game
         {
             List<Card> wonCards = new List<Card>();
             if (validCombinations.Count == 1)
-            {
                 wonCards = validCombinations[0];
-            }
             else
             {
                 int combinationId = _view.AskForCombinationToTake(validCombinations);
@@ -122,15 +170,19 @@ public class Game
             CheckBroom(player);
         }
         else
-        {
             _view.NoCombinationSums15();
-        }
     }
 
     private void PlayerGetsCards(Player player, List<Card> cards)
     {
         _cardsInTable.RemoveCardsFromTable(cards);
         player.AddCardsToWonCards(cards);
+        UpdateLastPlayerToWinCards(player);
+    }
+
+    private void UpdateLastPlayerToWinCards(Player player)
+    {
+        _lastPlayerToWinCards = player.Id;
     }
 
     private void CheckBroom(Player player)

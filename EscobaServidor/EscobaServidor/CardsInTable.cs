@@ -21,4 +21,9 @@ public class CardsInTable
             _cardsInTable.Remove(card);
         }
     }
+    
+    public void ResetWonCards()
+    {
+        _cardsInTable.Clear();
+    }
 }
