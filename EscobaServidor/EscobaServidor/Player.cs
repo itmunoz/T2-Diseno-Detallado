@@ -29,10 +29,17 @@ public class Player
     {
         get { return _hand; }
     }
+    
+    public void AddCardToHand(Card card)
+    {
+        _hand.Add(card);
+    }
+    
     public List<Card> WonCards
     {
         get { return _wonCards; }
     }
+    
     public int Escobas
     {
         get { return _escobas; }
@@ -41,11 +48,6 @@ public class Player
     public int NumberOfSevens
     {
         get { return _numberOfSevens; }
-    }
-
-    public void AddCardToHand(Card card)
-    {
-        _hand.Add(card);
     }
 
     public Card DiscardCardFromHand(int cardId)

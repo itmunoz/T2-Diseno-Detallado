@@ -28,6 +28,15 @@ public class Game
             if (_deck.Cards.Count == 0 && _player1.Hand.Count == 0 && _player2.Hand.Count == 0)
             {
                 EndOfHand();
+                
+                Player[] players = { _player1, _player2 };
+                bool are16PointsReached = CheckPoints(players);
+                if (are16PointsReached)
+                {
+                    break;
+                }
+                NextHand(players);
+
             }
             if (_player1.Hand.Count == 0 && _player2.Hand.Count == 0)
                 StartNewRound();
@@ -42,16 +51,17 @@ public class Game
         _view.CardsWonByPlayer(players);
         _pointsCounter.AssignPoints(players);
         _view.PointsWonByPlayer(players);
-        
-        CheckPoints(players);
-        
-        NextHand(players);
     }
 
-    private void CheckPoints(Player[] players)
+    private bool CheckPoints(Player[] players)
     {
         if (players[0].Points >= 16 || players[1].Points >= 16)
+        {
             GameFinished(players);
+            return true;
+        }
+        
+        return false;
     }
 
     private void GameFinished(Player[] players)
@@ -69,18 +79,11 @@ public class Game
     private void PlayerWin(Player player)
     {
         _view.AnnounceWinner(player);
-        CloseProgram();
     }
 
     private void PlayersTie()
     {
         _view.AnnounceTie();
-        CloseProgram();
-    }
-
-    private void CloseProgram()
-    {
-        Environment.Exit(0);
     }
 
     private void GiveCardsInTableToLastWinner(Player[] players)
@@ -232,7 +235,6 @@ public class Game
 
     private bool IsGameFinished()
     {
-        
         return false;
     }
 }
