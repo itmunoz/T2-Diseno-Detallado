@@ -17,9 +17,7 @@ public class CardsInTable
     public void RemoveCardsFromTable(List<Card> cards)
     {
         foreach (var card in cards)
-        {
             _cardsInTable.Remove(card);
-        }
     }
     
     public void ResetWonCards()

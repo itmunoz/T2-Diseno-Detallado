@@ -11,7 +11,7 @@ public class Game
     private PointsCounter _pointsCounter = new PointsCounter();
     private View _view = new View();
 
-    private int _currentPlayerTurn = 1;
+    private int _currentPlayerTurn = 2;
     private int _lastPlayerToWinCards;
 
     public Game()
@@ -22,7 +22,7 @@ public class Game
 
     public void Start()
     {
-        CheckStartOfRoundBroom();
+        CheckStartOfHandBroom();
         while (!IsGameFinished())
         {
             if (_deck.Cards.Count == 0 && _player1.Hand.Count == 0 && _player2.Hand.Count == 0)
@@ -50,14 +50,20 @@ public class Game
 
     private void CheckPoints(Player[] players)
     {
-        if (players[0].Points > 15 && players[1].Points > 15)
-            PlayersTie();
-        
-        else if (players[0].Points > 15)
+        if (players[0].Points >= 16 || players[1].Points >= 16)
+            GameFinished(players);
+    }
+
+    private void GameFinished(Player[] players)
+    {
+        if (players[0].Points > players[1].Points)
             PlayerWin(players[0]);
         
-        else if (players[1].Points > 15)
+        else if (players[0].Points < players[1].Points)
             PlayerWin(players[1]);
+        
+        else
+            PlayersTie();
     }
 
     private void PlayerWin(Player player)
@@ -100,11 +106,35 @@ public class Game
         _deck.PrepareDeck();
         GiveCardsToPlayers();
         PlaceInitialCardsOnTable();
+        CheckStartOfHandBroom();
     }
 
-    private void CheckStartOfRoundBroom()
+    private void CheckStartOfHandBroom()
     {
+        List<Card> cardsInTable = _cardsInTable.GetCardsInTable();
+        List<List<Card>> validCombinations = _cardChecker.GetCombinationsThatSum15(cardsInTable);
         
+        
+        if (_player1.Id != _currentPlayerTurn)
+        {
+            
+        }
+    }
+
+    private void CheckIfThereIsInitialBroom(List<List<Card>> validCombinations)
+    {
+        CheckInitialBroomOfFourCards(validCombinations);
+    }
+
+    private void CheckInitialBroomOfFourCards(List<List<Card>> validCombinations)
+    {
+        foreach (var combination in validCombinations)
+        {
+            if (combination.Count == 4)
+            {
+                
+            }
+        }
     }
 
     private void PlaceInitialCardsOnTable()

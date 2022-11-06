@@ -9,3 +9,7 @@
 /Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor/obj/Debug/net6.0/EscobaServidor.dll
 /Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor/obj/Debug/net6.0/refint/EscobaServidor.dll
 /Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor/obj/Debug/net6.0/EscobaServidor.pdb
+/Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor/bin/Debug/net6.0/EscobaServidor.deps.json
+/Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor/bin/Debug/net6.0/EscobaServidor.runtimeconfig.json
+/Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor/obj/Debug/net6.0/EscobaServidor.genruntimeconfig.cache
+/Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor/obj/Debug/net6.0/ref/EscobaServidor.dll

@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscobaServidor", "EscobaSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscobaCliente", "EscobaCliente\EscobaCliente.csproj", "{8D6E493A-9D20-4BC9-880A-51C461208E2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscobaTests", "EscobaTests\EscobaTests.csproj", "{B44075B3-706B-4F05-9DAC-FBB0257BF0CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscobaServidor.Tests", "EscobaServidor.Tests\EscobaServidor.Tests.csproj", "{EA95F96C-06D2-4F82-9DDB-7F14A346C0BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{8D6E493A-9D20-4BC9-880A-51C461208E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D6E493A-9D20-4BC9-880A-51C461208E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D6E493A-9D20-4BC9-880A-51C461208E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44075B3-706B-4F05-9DAC-FBB0257BF0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44075B3-706B-4F05-9DAC-FBB0257BF0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44075B3-706B-4F05-9DAC-FBB0257BF0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44075B3-706B-4F05-9DAC-FBB0257BF0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA95F96C-06D2-4F82-9DDB-7F14A346C0BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA95F96C-06D2-4F82-9DDB-7F14A346C0BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA95F96C-06D2-4F82-9DDB-7F14A346C0BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA95F96C-06D2-4F82-9DDB-7F14A346C0BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
