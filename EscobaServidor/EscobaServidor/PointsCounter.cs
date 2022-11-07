@@ -5,11 +5,19 @@ public class PointsCounter
     public void AssignPoints(Player[] players)
     {
         foreach (var player in players)
-        {
-            AssignBroomsPoints(player);
-            AssignSevenOfGoldPoints(player);
-        }
+            IndividualPoints(player);
 
+        ComparativePoints(players);
+    }
+
+    private void IndividualPoints(Player player)
+    {
+        AssignBroomsPoints(player);
+        AssignSevenOfGoldPoints(player);
+    }
+
+    private void ComparativePoints(Player[] players)
+    {
         AssignNumberOfCardsPoints(players);
         AssignNumberOfSevensPoints(players);
         AssignNumberOfGoldPoints(players);

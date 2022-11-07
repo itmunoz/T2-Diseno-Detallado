@@ -32,9 +32,8 @@ public class Game
                 Player[] players = { _player1, _player2 };
                 bool are16PointsReached = CheckPoints(players);
                 if (are16PointsReached)
-                {
                     break;
-                }
+                
                 NextHand(players);
 
             }
@@ -101,9 +100,7 @@ public class Game
     private void NextHand(Player[] players)
     {
         foreach (var player in players)
-        {
             player.ResetWonCards();
-        }
 
         _cardsInTable.ResetWonCards();
         _deck.PrepareDeck();
@@ -156,8 +153,10 @@ public class Game
     {
         if (_player1.Id == _currentPlayerTurn)
             PlayPlayerTurn(_player1);
+        
         else
             PlayPlayerTurn(_player2);
+        
         ChangeTurn();
     }
 

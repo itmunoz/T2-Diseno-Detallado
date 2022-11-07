@@ -26,17 +26,13 @@ public class Deck
     public void PlaceCardInTable(CardsInTable table)
     {
         for (int i = 0; i < 4; i++)
-        {
             table.ReceiveCard(DrawTopCard());
-        }
     }
 
     public void GiveCards(Player player, int cardQuantity)
     {
         for (int i = 0; i < cardQuantity; i++)
-        {
             player.AddCardToHand(DrawTopCard());
-        }
     }
 
     private Card DrawTopCard()
@@ -54,20 +50,35 @@ public class Deck
         
         List<Card> cardsList = new List<Card>();
 
+        CreateCards(suits, cardsList, higherCards);
+        
+        return cardsList;
+    }
+
+    private void CreateCards(string[] suits, List<Card> cardsList, string[] higherCards)
+    {
         foreach (var suit in suits)
         {
-            for (int i = 1; i < 8; i++)
-            {
-                Card card = new Card(suit, i.ToString());
-                cardsList.Add(card);
-            }
-
-            foreach (var higherCard in higherCards)
-            {
-                Card card = new Card(suit, higherCard);
-                cardsList.Add(card);
-            }
+            CreateNumberedCards(suit, cardsList);
+            CreateWordedCards(higherCards, suit, cardsList);
         }
-        return cardsList;
+    }
+
+    private void CreateWordedCards(string[] higherCards, string suit, List<Card> cardsList)
+    {
+        foreach (var higherCard in higherCards)
+        {
+            Card card = new Card(suit, higherCard);
+            cardsList.Add(card);
+        }
+    }
+
+    private void CreateNumberedCards(string suit, List<Card> cardsList)
+    {
+        for (int i = 1; i < 8; i++)
+        {
+            Card card = new Card(suit, i.ToString());
+            cardsList.Add(card);
+        }
     }
 }

@@ -2,24 +2,23 @@ namespace EscobaServidor;
 
 public class View
 {
-    public void WelcomeMessage()
-    {
-        Console.WriteLine("Bienvenido al juego!");
-        Console.WriteLine("");
-    }
-
     public void CardsWonByPlayer(Player[] players)
     {
         Console.WriteLine("-----------------------------------");
         Console.WriteLine("Cartas ganadas en esta ronda");
         foreach (var player in players)
         {
-            Console.Write("    Jugador " + player.Id + ": ");
-            foreach (var card in player.WonCards)
-                Console.Write(card + "  ");
-            
-            Console.WriteLine("");
+            CardsWonByEachPlayer(player);
         }
+    }
+
+    private void CardsWonByEachPlayer(Player player)
+    {
+        Console.Write("    Jugador " + player.Id + ": ");
+        foreach (var card in player.WonCards)
+            Console.Write(card + "  ");
+            
+        Console.WriteLine("");
     }
 
     public void AnnounceWinner(Player player)
@@ -51,11 +50,13 @@ public class View
     {
         Console.WriteLine("-----------------------------------");
         Console.WriteLine("Juega Jugador " + player.Id);
-        Console.Write("Mesa Actual: ");
+        
+        TableInfo(cardsInTable);
+        PlayerHandInfo(player);
+    }
 
-        for (int i = 0; i < cardsInTable.GetCardsInTable().Count; i++)
-            Console.Write("(" + i + ")" + cardsInTable.GetCardsInTable()[i] + "  ");
-
+    private void PlayerHandInfo(Player player)
+    {
         Console.WriteLine("");
         Console.Write("Mano jugador: ");
         
@@ -63,6 +64,14 @@ public class View
             Console.Write("(" + i + ") " + player.Hand[i] + "  ");
         
         Console.WriteLine("");
+    }
+
+    private void TableInfo(CardsInTable cardsInTable)
+    {
+        Console.Write("Mesa Actual: ");
+
+        for (int i = 0; i < cardsInTable.GetCardsInTable().Count; i++)
+            Console.Write("(" + i + ")" + cardsInTable.GetCardsInTable()[i] + "  ");
     }
 
     public int ChooseCard(Player player)
@@ -92,25 +101,26 @@ public class View
 
     public int AskForCombinationToTake(List<List<Card>> combinations)
     {
-        int minValue = 0;
-        int maxValue = combinations.Count - 1;
-        
         Console.WriteLine("");
-        Console.WriteLine("Hay " + (maxValue + 1) + " jugadas en la mesa:");
+        Console.WriteLine("Hay " + (combinations.Count) + " jugadas en la mesa:");
+        
+        ShowAvailableCombinations(combinations);
 
+        Console.WriteLine("¿Cuál quieres usar?");
+        int selectedValue = InputRange(0, combinations.Count - 1);
+        return selectedValue;
+    }
+
+    private void ShowAvailableCombinations(List<List<Card>> combinations)
+    {
         for (int i = 0; i < combinations.Count; i++)
         {
             Console.Write(i + "- ");
             foreach (var card in combinations[i])
-            {
                 Console.Write(card + "  ");
-            }
+            
             Console.WriteLine("");
         }
-        
-        Console.WriteLine("¿Cuál quieres usar?");
-        int selectedValue = InputRange(minValue, maxValue);
-        return selectedValue;
     }
 
     public void PlayerTakesCards(Player player, List<Card> cards)
@@ -145,5 +155,10 @@ public class View
         } while (!wasParseSuccessful || number < minValue || number > maxValue);
 
         return number;
+    }
+
+    private static void AnalyseNumber()
+    {
+        
     }
 }

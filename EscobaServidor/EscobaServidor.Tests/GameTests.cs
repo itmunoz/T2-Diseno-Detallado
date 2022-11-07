@@ -7,6 +7,6 @@ public class GameTests
     {
         Game game = new Game();
         
-        game.Start();
+        // game.Start();
     }
 }
