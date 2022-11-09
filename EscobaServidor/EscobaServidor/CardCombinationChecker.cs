@@ -28,8 +28,7 @@ public class CardCombinationChecker
 
         return totalSum;
     }
-
-    // Bibliografía: https://stackoverflow.com/questions/7802822/all-possible-combinations-of-a-list-of-values
+    
     private List<List<Card>> GetCombinations(List<Card> cardList)
     {
         List<List<Card>> combinations = new List<List<Card>>();

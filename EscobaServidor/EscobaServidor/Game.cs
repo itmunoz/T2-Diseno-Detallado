@@ -26,22 +26,39 @@ public class Game
         CheckStartOfHandBroom();
         while (!IsGameFinished())
         {
-            if (_deck.Cards.Count == 0 && _player1.Hand.Count == 0 && _player2.Hand.Count == 0)
-            {
-                EndOfHand();
-                
-                Player[] players = { _player1, _player2 };
-                bool are16PointsReached = CheckPoints(players);
-                if (are16PointsReached)
-                    break;
-                
-                NextHand(players);
-
-            }
-            if (_player1.Hand.Count == 0 && _player2.Hand.Count == 0)
-                StartNewRound();
             PlayTurn();
+            CheckNewHandAndNewRound();
         }
+    }
+
+    private void CheckNewHandAndNewRound()
+    {
+        CheckIfHandIsOver();
+        CheckIfNewCardsMustBeDealt();
+    }
+
+    private void CheckIfHandIsOver()
+    {
+        if (_deck.Cards.Count == 0 && _player1.Hand.Count == 0 && _player2.Hand.Count == 0)
+        {
+            EndOfHand();
+            Player[] players = { _player1, _player2 };
+            CheckIf16PointsAreReached(players);
+            NextHand(players);
+        }
+    }
+
+    private void CheckIf16PointsAreReached(Player[] players)
+    {
+        bool are16PointsReached = CheckPoints(players);
+        if (are16PointsReached)
+            _gameIsFinished = true;
+    }
+
+    private void CheckIfNewCardsMustBeDealt()
+    {
+        if (_player1.Hand.Count == 0 && _player2.Hand.Count == 0 && !_gameIsFinished)
+            StartNewRound();
     }
 
     private void EndOfHand()
@@ -66,14 +83,20 @@ public class Game
 
     private void GameFinished(Player[] players)
     {
+        if (players[0].Points != players[1].Points)
+            GameHasAWinner(players);
+        
+        else
+            PlayersTie();
+    }
+
+    private void GameHasAWinner(Player[] players)
+    {
         if (players[0].Points > players[1].Points)
             PlayerWin(players[0]);
         
         else if (players[0].Points < players[1].Points)
             PlayerWin(players[1]);
-        
-        else
-            PlayersTie();
     }
 
     private void PlayerWin(Player player)
@@ -103,6 +126,11 @@ public class Game
         foreach (var player in players)
             player.ResetWonCards();
 
+        StepsForNextHand();
+    }
+
+    private void StepsForNextHand()
+    {
         _cardsInTable.ResetWonCards();
         _deck.PrepareDeck();
         GiveCardsToPlayers();
@@ -114,26 +142,31 @@ public class Game
     {
         List<Card> cardsInTable = _cardsInTable.GetCardsInTable();
         List<List<Card>> validCombinations = _cardChecker.GetCombinationsThatSum15(cardsInTable);
-        
-        
-        if (_player1.Id != _currentPlayerTurn)
-        {
-            
-        }
+
+        CheckWhichPlayerShouldTakeInitialBroom(validCombinations);
     }
 
-    private void CheckIfThereIsInitialBroom(List<List<Card>> validCombinations)
+    private void CheckWhichPlayerShouldTakeInitialBroom(List<List<Card>> validCombinations)
     {
-        CheckInitialBroomOfFourCards(validCombinations);
+        if (_player1.Id != _currentPlayerTurn)
+            CheckIfThereIsInitialBroom(validCombinations, _player1);
+        
+        else
+            CheckIfThereIsInitialBroom(validCombinations, _player2);
     }
 
-    private void CheckInitialBroomOfFourCards(List<List<Card>> validCombinations)
+    private void CheckIfThereIsInitialBroom(List<List<Card>> validCombinations, Player player)
+    {
+        CheckInitialBroomOfFourCards(validCombinations, player);
+    }
+
+    private void CheckInitialBroomOfFourCards(List<List<Card>> validCombinations, Player player)
     {
         foreach (var combination in validCombinations)
         {
             if (combination.Count == 4)
             {
-                
+                GiveCardsToPlayer(player, combination);
             }
         }
     }
@@ -188,6 +221,11 @@ public class Game
         List<Card> cardsInTable = _cardsInTable.GetCardsInTable();
         List<List<Card>> validCombinations = _cardChecker.GetCombinationsThatSum15(cardsInTable);
 
+        CheckIfThereAreValidCombinations(validCombinations, player);
+    }
+
+    private void CheckIfThereAreValidCombinations(List<List<Card>> validCombinations, Player player)
+    {
         if (validCombinations.Any())
             PrepareValidCombinations(validCombinations, player);
         
@@ -208,11 +246,15 @@ public class Game
             wonCards = validCombinations[0];
         
         else
-        {
-            int combinationId = _view.AskForCombinationToTake(validCombinations);
-            wonCards = validCombinations[combinationId];
-        }
+            wonCards = ChooseWhichBroomToTake(validCombinations, wonCards);
+        
+        return wonCards;
+    }
 
+    private List<Card> ChooseWhichBroomToTake(List<List<Card>> validCombinations, List<Card> wonCards)
+    {
+        int combinationId = _view.AskForCombinationToTake(validCombinations);
+        wonCards = validCombinations[combinationId];
         return wonCards;
     }
 

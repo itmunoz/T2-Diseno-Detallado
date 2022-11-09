@@ -150,17 +150,17 @@ public class View
         {
             string? userInput = Console.ReadLine();
             wasParseSuccessful = int.TryParse(userInput, out number);
-            if (!wasParseSuccessful || number < minValue || number > maxValue)
-            {
-                Console.WriteLine("Input inválido. Intenta de nuevo");
-            }
+            PrintIfInputIsInvalid(wasParseSuccessful, number, minValue, maxValue);
         } while (!wasParseSuccessful || number < minValue || number > maxValue);
 
         return number;
     }
 
-    private static void AnalyseNumber(int number, int minValue, int maxValue)
+    private static void PrintIfInputIsInvalid(bool wasParseSuccessful, int number, int minValue, int maxValue)
     {
-
+        if (!wasParseSuccessful || number < minValue || number > maxValue)
+        {
+            Console.WriteLine("Input inválido. Intenta de nuevo");
+        }
     }
 }

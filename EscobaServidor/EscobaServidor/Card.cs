@@ -7,16 +7,8 @@ public class Card
     
     private IDictionary<string, int> _intValues = new Dictionary<string, int>()
     {
-        {"1", 1},
-        {"2", 2},
-        {"3", 3},
-        {"4", 4},
-        {"5", 5},
-        {"6", 6},
-        {"7", 7},
-        {"sota", 8},
-        {"caballo", 9},
-        {"rey", 10}
+        {"1", 1}, {"2", 2}, {"3", 3}, {"4", 4}, {"5", 5}, {"6", 6}, 
+        {"7", 7}, {"sota", 8}, {"caballo", 9}, {"rey", 10}
     };
 
     public string Suit
