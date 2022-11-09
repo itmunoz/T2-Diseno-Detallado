@@ -5,6 +5,20 @@ public class Card
     private string _suit;
     private string _value;
     
+    private IDictionary<string, int> _intValues = new Dictionary<string, int>()
+    {
+        {"1", 1},
+        {"2", 2},
+        {"3", 3},
+        {"4", 4},
+        {"5", 5},
+        {"6", 6},
+        {"7", 7},
+        {"sota", 8},
+        {"caballo", 9},
+        {"rey", 10}
+    };
+
     public string Suit
     {
         get { return _suit; }
@@ -17,16 +31,7 @@ public class Card
 
     public int GetIntValue()
     {
-        if (_value == "sota")
-            return 8;
-
-        if (_value == "caballo")
-            return 9;
-        
-        if (_value == "rey")
-            return 10;
-
-        return Int32.Parse(_value);
+        return _intValues[_value];
     }
     
     public Card(string suit, string value)

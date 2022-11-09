@@ -13,6 +13,7 @@ public class Game
 
     private int _currentPlayerTurn = 2;
     private int _lastPlayerToWinCards;
+    private bool _gameIsFinished = false;
 
     public Game()
     {
@@ -188,21 +189,38 @@ public class Game
         List<List<Card>> validCombinations = _cardChecker.GetCombinationsThatSum15(cardsInTable);
 
         if (validCombinations.Any())
-        {
-            List<Card> wonCards = new List<Card>();
-            if (validCombinations.Count == 1)
-                wonCards = validCombinations[0];
-            else
-            {
-                int combinationId = _view.AskForCombinationToTake(validCombinations);
-                wonCards = validCombinations[combinationId];
-            }
-            _view.PlayerTakesCards(player, wonCards);
-            PlayerGetsCards(player, wonCards);
-            CheckBroom(player);
-        }
+            PrepareValidCombinations(validCombinations, player);
+        
         else
             _view.NoCombinationSums15();
+    }
+
+    private void PrepareValidCombinations(List<List<Card>> validCombinations, Player player)
+    {
+        List<Card> wonCards = new List<Card>();
+        wonCards = PrepareWonCards(validCombinations, wonCards);
+        GiveCardsToPlayer(player, wonCards);
+    }
+
+    private List<Card> PrepareWonCards(List<List<Card>> validCombinations, List<Card> wonCards)
+    {
+        if (validCombinations.Count == 1)
+            wonCards = validCombinations[0];
+        
+        else
+        {
+            int combinationId = _view.AskForCombinationToTake(validCombinations);
+            wonCards = validCombinations[combinationId];
+        }
+
+        return wonCards;
+    }
+
+    private void GiveCardsToPlayer(Player player, List<Card> wonCards)
+    {
+        _view.PlayerTakesCards(player, wonCards);
+        PlayerGetsCards(player, wonCards);
+        CheckBroom(player);
     }
 
     private void PlayerGetsCards(Player player, List<Card> cards)
@@ -234,6 +252,6 @@ public class Game
 
     private bool IsGameFinished()
     {
-        return false;
+        return _gameIsFinished;
     }
 }

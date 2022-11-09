@@ -5,7 +5,6 @@ using System.Text.Json;
 public class Deck
 {
     private List<Card> _cards = new List<Card>();
-    private Random _rnd = new Random();
 
     public Deck()
     {

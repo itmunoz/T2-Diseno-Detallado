@@ -7,9 +7,7 @@ public class View
         Console.WriteLine("-----------------------------------");
         Console.WriteLine("Cartas ganadas en esta ronda");
         foreach (var player in players)
-        {
             CardsWonByEachPlayer(player);
-        }
     }
 
     private void CardsWonByEachPlayer(Player player)
@@ -101,14 +99,18 @@ public class View
 
     public int AskForCombinationToTake(List<List<Card>> combinations)
     {
-        Console.WriteLine("");
-        Console.WriteLine("Hay " + (combinations.Count) + " jugadas en la mesa:");
-        
+        AmountOfCombinations(combinations);
         ShowAvailableCombinations(combinations);
 
         Console.WriteLine("¿Cuál quieres usar?");
         int selectedValue = InputRange(0, combinations.Count - 1);
         return selectedValue;
+    }
+
+    private void AmountOfCombinations(List<List<Card>> combinations)
+    {
+        Console.WriteLine("");
+        Console.WriteLine("Hay " + (combinations.Count) + " jugadas en la mesa:");
     }
 
     private void ShowAvailableCombinations(List<List<Card>> combinations)
@@ -157,8 +159,8 @@ public class View
         return number;
     }
 
-    private static void AnalyseNumber()
+    private static void AnalyseNumber(int number, int minValue, int maxValue)
     {
-        
+
     }
 }
