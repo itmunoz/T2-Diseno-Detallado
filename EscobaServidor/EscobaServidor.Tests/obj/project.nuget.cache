@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "KlDiyrdgxh0nyh7NvafH6Pnnd1R7QiTfL2Nrrw5Wf0iTgM5NmR4A3sVipc6bbrZ0wT5+tIJ/aEAQyTYOMIh0RQ==",
   "success": true,
-  "projectFilePath": "/Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor.Tests/EscobaServidor.Tests.csproj",
+  "projectFilePath": "/Users/nachomunoz/Desktop/universidad/Diseño Detallado/T2-Diseno-Detallado/EscobaServidor/EscobaServidor.Tests/EscobaServidor.Tests.csproj",
   "expectedPackageFiles": [
     "/Users/nachomunoz/.nuget/packages/coverlet.collector/3.1.2/coverlet.collector.3.1.2.nupkg.sha512",
     "/Users/nachomunoz/.nuget/packages/microsoft.codecoverage/17.1.0/microsoft.codecoverage.17.1.0.nupkg.sha512",

@@ -142,7 +142,7 @@ public class View
         return selectedValue;
     }
     
-    private static int AskForNumber(int minValue, int maxValue)
+    protected virtual int AskForNumber(int minValue, int maxValue)
     {
         int number;
         bool wasParseSuccessful;
@@ -156,7 +156,7 @@ public class View
         return number;
     }
 
-    private static void PrintIfInputIsInvalid(bool wasParseSuccessful, int number, int minValue, int maxValue)
+    private void PrintIfInputIsInvalid(bool wasParseSuccessful, int number, int minValue, int maxValue)
     {
         if (!wasParseSuccessful || number < minValue || number > maxValue)
         {

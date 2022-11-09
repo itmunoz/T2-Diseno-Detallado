@@ -9,17 +9,22 @@ public class Game
     private CardsInTable _cardsInTable = new CardsInTable();
     private CardCombinationChecker _cardChecker = new CardCombinationChecker();
     private PointsCounter _pointsCounter = new PointsCounter();
-    private View _view = new View();
+    private View _view;
 
     private int _currentPlayerTurn = 2;
     private int _lastPlayerToWinCards;
     private bool _gameIsFinished = false;
 
-    public Game()
+    private Game(View view)
     {
+        _view = view;
         GiveCardsToPlayers();
         PlaceInitialCardsOnTable();
     }
+
+    public static Game Create() => new Game(new View());
+
+    public static Game CreateWithRandomPlayer() => new Game(new ViewRandomPlayer());
 
     public void Start()
     {

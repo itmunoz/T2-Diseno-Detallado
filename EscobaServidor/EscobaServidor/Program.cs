@@ -4,5 +4,5 @@ using EscobaServidor;
 
 Console.WriteLine("Partiendo el juego!");
 
-Game game = new Game();
+Game game = Game.Create();
 game.Start();
